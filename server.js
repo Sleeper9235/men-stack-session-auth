@@ -7,6 +7,8 @@ const methodOverride = require("method-override")
 const morgan = require("morgan")
 
 const port = process.env.PORT ? process.env.PORT : "3000"
+const authController = require("./controllers/auth.js")
+
 
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on("connected", () => {
@@ -22,7 +24,7 @@ app.get('/', async (req, res) => {
     res.render('index.ejs')
 })
 
-
+app.use('/auth', authController)
 
 
 
